@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   end
 
   def score
+    # debug with raise to really understand what i have with my params
     @letters = params[:letters].split
     @word = (params[:word] || "").upcase
     @included = included?(@word, @letters)
@@ -19,6 +20,9 @@ class GamesController < ApplicationController
   private
 
   def included?(word, letters)
+    # .chars return array of chars in str
+    # "see" -> ["s", "e", "e"]
+    # all? true /false to given condition
     word.chars.all? { |letter| word.count(letter) <= letters.count(letter) }
   end
 
